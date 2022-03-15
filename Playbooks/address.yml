@@ -1,0 +1,23 @@
+---
+- collections:
+  - fortinet.fortios
+  connection: httpapi
+  hosts: Lab
+
+  tasks:
+  - name: Deploy address object
+    fortios_firewall_address:
+      vdom: root
+      state: present
+      fortios_firewall_address:
+        name: Webserver
+        obj_type: ip
+        color: 2
+        allow_routing: disable
+        subnet: 11.11.11.0 255.255.255.0
+        type: ipmask
+      register: output
+
+  - name: Print returned value
+    debug:
+      var: output
