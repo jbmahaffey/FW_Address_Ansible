@@ -3,21 +3,32 @@
   - fortinet.fortios
   connection: httpapi
   hosts: Lab
+  vars:
+    ansible_httpapi_port: 80
+    ansible_httpapi_use_ssl: false
+    ansible_httpapi_validate_certs: false
+    ansible_network_os: fortinet.fortios.fortios
+    vdom: "root"
 
   tasks:
   - name: Deploy address object
+    tags: [address]
     fortios_firewall_address:
-      vdom: root
+      access_token: wcz9r6sbGHr04kz7qzHg5xGrxfk8y8
+      vdom: "root"
       state: present
-      fortios_firewall_address:
+      firewall_address:
         name: Webserver
         obj_type: ip
         color: 2
         allow_routing: disable
         subnet: 11.11.11.0 255.255.255.0
         type: ipmask
-      register: output
+      firewall_address:
+        name: DMZ
+        obj_type: ip
+        color: 4
+        allow_routing: disable
+        subnet: 12.12.12.0 255.255.255.0
+        type: ipmask
 
-  - name: Print returned value
-    debug:
-      var: output
