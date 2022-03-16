@@ -31,4 +31,10 @@
         allow_routing: disable
         subnet: 12.12.12.0 255.255.255.0
         type: ipmask
+      firewall_address:
+        name: yahoo
+        color: 6
+        allow_routing: disable
+        fqdn: yahoo.com
+        type: fqdn
 
